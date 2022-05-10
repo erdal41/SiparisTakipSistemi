@@ -1,0 +1,1288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SiparisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BilesenKProfilleri">
+          <Key>
+            <PropertyRef Name="BilesenKProfilID" />
+          </Key>
+          <Property Name="BilesenKProfilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BilesenID" Type="int" />
+          <Property Name="KProfilID" Type="int" />
+          <Property Name="UzunlukTutari" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KProfiUzunluk" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Bilesenler">
+          <Key>
+            <PropertyRef Name="BilesenID" />
+          </Key>
+          <Property Name="BilesenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BilesenAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="BilesenAdet" Type="int" />
+          <Property Name="BilesenBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="BilesenAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="BilesenBirimFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BilesenSaclari">
+          <Key>
+            <PropertyRef Name="BilesenSaclariID" />
+          </Key>
+          <Property Name="BilesenSaclariID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BilesenID" Type="int" />
+          <Property Name="SacID" Type="int" />
+          <Property Name="AgirlikTutari" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SacAgirlik" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="EkBilesenler">
+          <Key>
+            <PropertyRef Name="EkBilesenID" />
+          </Key>
+          <Property Name="EkBilesenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EkBilesenAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="EkBilesenBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="EkBilesenAdet" Type="int" />
+          <Property Name="EkBilesenAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EkBilesenAdetFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EkIslemMaliyeti">
+          <Key>
+            <PropertyRef Name="EkIslemMaliyetiID" />
+          </Key>
+          <Property Name="EkIslemMaliyetiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EkIslemMaliyetiAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="EkIslemMaliyetiUzunluk" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EkIslemMaliyetiFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EkMaliyetler">
+          <Key>
+            <PropertyRef Name="EkMaliyetID" />
+          </Key>
+          <Property Name="EkMaliyetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EkMaliyetAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FormYetkileri">
+          <Key>
+            <PropertyRef Name="FormYetkileriID" />
+          </Key>
+          <Property Name="FormYetkileriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormAdi" Type="nvarchar" MaxLength="100" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="Ac" Type="bit" />
+          <Property Name="Ekle" Type="bit" />
+          <Property Name="Guncelle" Type="bit" />
+          <Property Name="Sil" Type="bit" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullaniciAdSoyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KullaniciSonGirisTarihi">
+          <Key>
+            <PropertyRef Name="KullaniciSonGirisTarihiID" />
+          </Key>
+          <Property Name="KullaniciSonGirisTarihiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="SonGirisTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KutuProfiller">
+          <Key>
+            <PropertyRef Name="KProfilID" />
+          </Key>
+          <Property Name="KProfilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KProfilAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="KProfilBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KProfilBirimFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilUzunluk" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MaliyetDetayi">
+          <Key>
+            <PropertyRef Name="MaliyetDetayiID" />
+          </Key>
+          <Property Name="MaliyetDetayiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaliyetID" Type="int" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="MaliyetBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirimAgirlik" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BirimFiyati" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UrunMiktari" Type="int" />
+          <Property Name="ToplamAgirlik" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ToplamTutar" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MaliyetEkleri">
+          <Key>
+            <PropertyRef Name="MaliyetEkleriID" />
+          </Key>
+          <Property Name="MaliyetEkleriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaliyetID" Type="int" />
+          <Property Name="EkMaliyetID" Type="int" />
+          <Property Name="MaliyetFiyati" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Maliyetler">
+          <Key>
+            <PropertyRef Name="MaliyetID" />
+          </Key>
+          <Property Name="MaliyetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IlkTutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GenelToplamAgirlik" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GenelToplamTutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Saclar">
+          <Key>
+            <PropertyRef Name="SacID" />
+          </Key>
+          <Property Name="SacID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SacAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="SacBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SacBirimFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SacAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UrunBilesenleri">
+          <Key>
+            <PropertyRef Name="UrunBilesenleriID" />
+          </Key>
+          <Property Name="UrunBilesenleriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="BilesenID" Type="int" />
+          <Property Name="UrunBilesenleriAdet" Type="int" />
+          <Property Name="UrunBilesenleriAdetAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UrunBilesenleriAdetTutari" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="UrunEkBilesenleri">
+          <Key>
+            <PropertyRef Name="UrunEkBilesenleriID" />
+          </Key>
+          <Property Name="UrunEkBilesenleriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="EkBilesenID" Type="int" />
+          <Property Name="UrunEkBilesenleriAdet" Type="int" />
+          <Property Name="UrunEkBilesenleriAdetAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UrunEkBilesenleriAdetTutari" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="UrunEkIslemMaliyetleri">
+          <Key>
+            <PropertyRef Name="UrunEkIslemMaliyetleriID" />
+          </Key>
+          <Property Name="UrunEkIslemMaliyetleriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="EkIslemMaliyetiID" Type="int" />
+          <Property Name="UrunEkIslemMaliyetleriFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UrunEkIslemMaliyetleriUzunluk" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="UrunAdet" Type="int" />
+          <Property Name="UrunBirimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunAgirlik" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UrunBirimFiyati" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_BilesenKProfilleri_Bilesenler">
+          <End Role="Bilesenler" Type="Self.Bilesenler" Multiplicity="0..1" />
+          <End Role="BilesenKProfilleri" Type="Self.BilesenKProfilleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="BilesenKProfilleri">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BilesenKProfilleri_KutuProfiller">
+          <End Role="KutuProfiller" Type="Self.KutuProfiller" Multiplicity="0..1" />
+          <End Role="BilesenKProfilleri" Type="Self.BilesenKProfilleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KutuProfiller">
+              <PropertyRef Name="KProfilID" />
+            </Principal>
+            <Dependent Role="BilesenKProfilleri">
+              <PropertyRef Name="KProfilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BilesenSaclari_Bilesenler">
+          <End Role="Bilesenler" Type="Self.Bilesenler" Multiplicity="0..1" />
+          <End Role="BilesenSaclari" Type="Self.BilesenSaclari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="BilesenSaclari">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BilesenSaclari_Saclar">
+          <End Role="Saclar" Type="Self.Saclar" Multiplicity="0..1" />
+          <End Role="BilesenSaclari" Type="Self.BilesenSaclari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saclar">
+              <PropertyRef Name="SacID" />
+            </Principal>
+            <Dependent Role="BilesenSaclari">
+              <PropertyRef Name="SacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormYetkileri_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+          <End Role="FormYetkileri" Type="Self.FormYetkileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="FormYetkileri">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciSonGirisTarihi_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+          <End Role="KullaniciSonGirisTarihi" Type="Self.KullaniciSonGirisTarihi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="KullaniciSonGirisTarihi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetDetayi_Maliyetler">
+          <End Role="Maliyetler" Type="Self.Maliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetDetayi" Type="Self.MaliyetDetayi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maliyetler">
+              <PropertyRef Name="MaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetDetayi">
+              <PropertyRef Name="MaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetDetayi_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="MaliyetDetayi" Type="Self.MaliyetDetayi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="MaliyetDetayi">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetEkleri_EkMaliyetler">
+          <End Role="EkMaliyetler" Type="Self.EkMaliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetEkleri" Type="Self.MaliyetEkleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkMaliyetler">
+              <PropertyRef Name="EkMaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetEkleri">
+              <PropertyRef Name="EkMaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetEkleri_Maliyetler">
+          <End Role="Maliyetler" Type="Self.Maliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetEkleri" Type="Self.MaliyetEkleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maliyetler">
+              <PropertyRef Name="MaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetEkleri">
+              <PropertyRef Name="MaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunBilesenleri_Bilesenler">
+          <End Role="Bilesenler" Type="Self.Bilesenler" Multiplicity="0..1" />
+          <End Role="UrunBilesenleri" Type="Self.UrunBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="UrunBilesenleri">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunBilesenleri_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunBilesenleri" Type="Self.UrunBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunBilesenleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkBilesenleri_EkBilesenler">
+          <End Role="EkBilesenler" Type="Self.EkBilesenler" Multiplicity="0..1" />
+          <End Role="UrunEkBilesenleri" Type="Self.UrunEkBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkBilesenler">
+              <PropertyRef Name="EkBilesenID" />
+            </Principal>
+            <Dependent Role="UrunEkBilesenleri">
+              <PropertyRef Name="EkBilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkBilesenleri_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunEkBilesenleri" Type="Self.UrunEkBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunEkBilesenleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkIslemMaliyetleri_EkIslemMaliyeti">
+          <End Role="EkIslemMaliyeti" Type="Self.EkIslemMaliyeti" Multiplicity="0..1" />
+          <End Role="UrunEkIslemMaliyetleri" Type="Self.UrunEkIslemMaliyetleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkIslemMaliyeti">
+              <PropertyRef Name="EkIslemMaliyetiID" />
+            </Principal>
+            <Dependent Role="UrunEkIslemMaliyetleri">
+              <PropertyRef Name="EkIslemMaliyetiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkIslemMaliyetleri_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunEkIslemMaliyetleri" Type="Self.UrunEkIslemMaliyetleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunEkIslemMaliyetleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparisTakipModelStoreContainer">
+          <EntitySet Name="BilesenKProfilleri" EntityType="Self.BilesenKProfilleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bilesenler" EntityType="Self.Bilesenler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BilesenSaclari" EntityType="Self.BilesenSaclari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EkBilesenler" EntityType="Self.EkBilesenler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EkIslemMaliyeti" EntityType="Self.EkIslemMaliyeti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EkMaliyetler" EntityType="Self.EkMaliyetler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormYetkileri" EntityType="Self.FormYetkileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciSonGirisTarihi" EntityType="Self.KullaniciSonGirisTarihi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KutuProfiller" EntityType="Self.KutuProfiller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaliyetDetayi" EntityType="Self.MaliyetDetayi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaliyetEkleri" EntityType="Self.MaliyetEkleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maliyetler" EntityType="Self.Maliyetler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saclar" EntityType="Self.Saclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunBilesenleri" EntityType="Self.UrunBilesenleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunEkBilesenleri" EntityType="Self.UrunEkBilesenleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunEkIslemMaliyetleri" EntityType="Self.UrunEkIslemMaliyetleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BilesenKProfilleri_Bilesenler" Association="Self.FK_BilesenKProfilleri_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="BilesenKProfilleri" EntitySet="BilesenKProfilleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BilesenKProfilleri_KutuProfiller" Association="Self.FK_BilesenKProfilleri_KutuProfiller">
+            <End Role="KutuProfiller" EntitySet="KutuProfiller" />
+            <End Role="BilesenKProfilleri" EntitySet="BilesenKProfilleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BilesenSaclari_Bilesenler" Association="Self.FK_BilesenSaclari_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="BilesenSaclari" EntitySet="BilesenSaclari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BilesenSaclari_Saclar" Association="Self.FK_BilesenSaclari_Saclar">
+            <End Role="Saclar" EntitySet="Saclar" />
+            <End Role="BilesenSaclari" EntitySet="BilesenSaclari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormYetkileri_Kullanicilar" Association="Self.FK_FormYetkileri_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="FormYetkileri" EntitySet="FormYetkileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciSonGirisTarihi_Kullanicilar" Association="Self.FK_KullaniciSonGirisTarihi_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KullaniciSonGirisTarihi" EntitySet="KullaniciSonGirisTarihi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetDetayi_Maliyetler" Association="Self.FK_MaliyetDetayi_Maliyetler">
+            <End Role="Maliyetler" EntitySet="Maliyetler" />
+            <End Role="MaliyetDetayi" EntitySet="MaliyetDetayi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetDetayi_Urunler" Association="Self.FK_MaliyetDetayi_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="MaliyetDetayi" EntitySet="MaliyetDetayi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetEkleri_EkMaliyetler" Association="Self.FK_MaliyetEkleri_EkMaliyetler">
+            <End Role="EkMaliyetler" EntitySet="EkMaliyetler" />
+            <End Role="MaliyetEkleri" EntitySet="MaliyetEkleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetEkleri_Maliyetler" Association="Self.FK_MaliyetEkleri_Maliyetler">
+            <End Role="Maliyetler" EntitySet="Maliyetler" />
+            <End Role="MaliyetEkleri" EntitySet="MaliyetEkleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunBilesenleri_Bilesenler" Association="Self.FK_UrunBilesenleri_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="UrunBilesenleri" EntitySet="UrunBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunBilesenleri_Urunler" Association="Self.FK_UrunBilesenleri_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunBilesenleri" EntitySet="UrunBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkBilesenleri_EkBilesenler" Association="Self.FK_UrunEkBilesenleri_EkBilesenler">
+            <End Role="EkBilesenler" EntitySet="EkBilesenler" />
+            <End Role="UrunEkBilesenleri" EntitySet="UrunEkBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkBilesenleri_Urunler" Association="Self.FK_UrunEkBilesenleri_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunEkBilesenleri" EntitySet="UrunEkBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkIslemMaliyetleri_EkIslemMaliyeti" Association="Self.FK_UrunEkIslemMaliyetleri_EkIslemMaliyeti">
+            <End Role="EkIslemMaliyeti" EntitySet="EkIslemMaliyeti" />
+            <End Role="UrunEkIslemMaliyetleri" EntitySet="UrunEkIslemMaliyetleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkIslemMaliyetleri_Urunler" Association="Self.FK_UrunEkIslemMaliyetleri_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunEkIslemMaliyetleri" EntitySet="UrunEkIslemMaliyetleri" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiparisTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bilesenler">
+          <Key>
+            <PropertyRef Name="BilesenID" />
+          </Key>
+          <Property Name="BilesenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BilesenAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BilesenAdet" Type="Int32" />
+          <Property Name="BilesenBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BilesenAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BilesenBirimFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="BilesenSaclari" Relationship="Self.FK_BilesenSaclari_Bilesenler" FromRole="Bilesenler" ToRole="BilesenSaclari" />
+          <NavigationProperty Name="UrunBilesenleri" Relationship="Self.FK_UrunBilesenleri_Bilesenler" FromRole="Bilesenler" ToRole="UrunBilesenleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BilesenKProfilleri" Relationship="SiparisTakipModel.FK_BilesenKProfilleri_Bilesenler" FromRole="Bilesenler" ToRole="BilesenKProfilleri" />
+        </EntityType>
+        <EntityType Name="BilesenSaclari">
+          <Key>
+            <PropertyRef Name="BilesenSaclariID" />
+          </Key>
+          <Property Name="BilesenSaclariID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BilesenID" Type="Int32" />
+          <Property Name="SacID" Type="Int32" />
+          <Property Name="AgirlikTutari" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Bilesenler" Relationship="Self.FK_BilesenSaclari_Bilesenler" FromRole="BilesenSaclari" ToRole="Bilesenler" />
+          <NavigationProperty Name="Saclar" Relationship="Self.FK_BilesenSaclari_Saclar" FromRole="BilesenSaclari" ToRole="Saclar" />
+          <Property Name="SacAgirlik" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="EkBilesenler">
+          <Key>
+            <PropertyRef Name="EkBilesenID" />
+          </Key>
+          <Property Name="EkBilesenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EkBilesenAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EkBilesenBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EkBilesenAdet" Type="Int32" />
+          <Property Name="EkBilesenAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EkBilesenAdetFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="UrunEkBilesenleri" Relationship="Self.FK_UrunEkBilesenleri_EkBilesenler" FromRole="EkBilesenler" ToRole="UrunEkBilesenleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EkIslemMaliyeti">
+          <Key>
+            <PropertyRef Name="EkIslemMaliyetiID" />
+          </Key>
+          <Property Name="EkIslemMaliyetiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EkIslemMaliyetiAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EkIslemMaliyetiUzunluk" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EkIslemMaliyetiFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="UrunEkIslemMaliyetleri" Relationship="Self.FK_UrunEkFiyatlari_EkFiyatlar" FromRole="EkIslemMaliyeti" ToRole="UrunEkIslemMaliyetleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EkMaliyetler">
+          <Key>
+            <PropertyRef Name="EkMaliyetID" />
+          </Key>
+          <Property Name="EkMaliyetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EkMaliyetAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MaliyetEkleri" Relationship="Self.FK_MaliyetEkleri_EkMaliyetler1" FromRole="EkMaliyetler" ToRole="MaliyetEkleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="KutuProfiller">
+          <Key>
+            <PropertyRef Name="KProfilID" />
+          </Key>
+          <Property Name="KProfilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KProfilAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KProfilBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KProfilBirimFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilUzunluk" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BilesenKProfilleri" Relationship="SiparisTakipModel.FK_BilesenKProfilleri_KutuProfiller" FromRole="KutuProfiller" ToRole="BilesenKProfilleri" />
+        </EntityType>
+        <EntityType Name="MaliyetDetayi">
+          <Key>
+            <PropertyRef Name="MaliyetDetayiID" />
+          </Key>
+          <Property Name="MaliyetDetayiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaliyetID" Type="Int32" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="MaliyetBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirimAgirlik" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BirimFiyati" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UrunMiktari" Type="Int32" />
+          <Property Name="ToplamAgirlik" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ToplamTutar" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Maliyetler" Relationship="Self.FK_MaliyetDetayi_Maliyetler" FromRole="MaliyetDetayi" ToRole="Maliyetler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_MaliyetDetayi_Urunler" FromRole="MaliyetDetayi" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="MaliyetEkleri">
+          <Key>
+            <PropertyRef Name="MaliyetEkleriID" />
+          </Key>
+          <Property Name="MaliyetEkleriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaliyetID" Type="Int32" />
+          <Property Name="EkMaliyetID" Type="Int32" />
+          <Property Name="MaliyetFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="EkMaliyetler" Relationship="Self.FK_MaliyetEkleri_EkMaliyetler1" FromRole="MaliyetEkleri" ToRole="EkMaliyetler" />
+          <NavigationProperty Name="Maliyetler" Relationship="Self.FK_MaliyetEkleri_Maliyetler" FromRole="MaliyetEkleri" ToRole="Maliyetler" />
+        </EntityType>
+        <EntityType Name="Maliyetler">
+          <Key>
+            <PropertyRef Name="MaliyetID" />
+          </Key>
+          <Property Name="MaliyetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IlkTutar" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GenelToplamAgirlik" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GenelToplamTutar" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="MaliyetDetayi" Relationship="Self.FK_MaliyetDetayi_Maliyetler" FromRole="Maliyetler" ToRole="MaliyetDetayi" />
+          <NavigationProperty Name="MaliyetEkleri" Relationship="Self.FK_MaliyetEkleri_Maliyetler" FromRole="Maliyetler" ToRole="MaliyetEkleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Saclar">
+          <Key>
+            <PropertyRef Name="SacID" />
+          </Key>
+          <Property Name="SacID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SacAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SacBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SacBirimFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SacAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="BilesenSaclari" Relationship="Self.FK_BilesenSaclari_Saclar" FromRole="Saclar" ToRole="BilesenSaclari" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UrunBilesenleri">
+          <Key>
+            <PropertyRef Name="UrunBilesenleriID" />
+          </Key>
+          <Property Name="UrunBilesenleriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="BilesenID" Type="Int32" />
+          <NavigationProperty Name="Bilesenler" Relationship="Self.FK_UrunBilesenleri_Bilesenler" FromRole="UrunBilesenleri" ToRole="Bilesenler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_UrunBilesenleri_Urunler" FromRole="UrunBilesenleri" ToRole="Urunler" />
+          <Property Name="UrunBilesenleriAdet" Type="Int32" />
+          <Property Name="UrunBilesenleriAdetAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="UrunBilesenleriAdetTutari" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="UrunEkBilesenleri">
+          <Key>
+            <PropertyRef Name="UrunEkBilesenleriID" />
+          </Key>
+          <Property Name="UrunEkBilesenleriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="EkBilesenID" Type="Int32" />
+          <NavigationProperty Name="EkBilesenler" Relationship="Self.FK_UrunEkBilesenleri_EkBilesenler" FromRole="UrunEkBilesenleri" ToRole="EkBilesenler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_UrunEkBilesenleri_Urunler" FromRole="UrunEkBilesenleri" ToRole="Urunler" />
+          <Property Name="UrunEkBilesenleriAdet" Type="Int32" />
+          <Property Name="UrunEkBilesenleriAdetAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="UrunEkBilesenleriAdetTutari" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="UrunEkIslemMaliyetleri">
+          <Key>
+            <PropertyRef Name="UrunEkIslemMaliyetleriID" />
+          </Key>
+          <Property Name="UrunEkIslemMaliyetleriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="EkIslemMaliyetiID" Type="Int32" />
+          <Property Name="UrunEkIslemMaliyetleriFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="EkIslemMaliyeti" Relationship="Self.FK_UrunEkFiyatlari_EkFiyatlar" FromRole="UrunEkIslemMaliyetleri" ToRole="EkIslemMaliyeti" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_UrunEkFiyatlari_Urunler" FromRole="UrunEkIslemMaliyetleri" ToRole="Urunler" />
+          <Property Name="UrunEkIslemMaliyetleriUzunluk" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAdet" Type="Int32" />
+          <Property Name="UrunBirimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="UrunBirimFiyati" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="MaliyetDetayi" Relationship="Self.FK_MaliyetDetayi_Urunler" FromRole="Urunler" ToRole="MaliyetDetayi" />
+          <NavigationProperty Name="UrunBilesenleri" Relationship="Self.FK_UrunBilesenleri_Urunler" FromRole="Urunler" ToRole="UrunBilesenleri" />
+          <NavigationProperty Name="UrunEkBilesenleri" Relationship="Self.FK_UrunEkBilesenleri_Urunler" FromRole="Urunler" ToRole="UrunEkBilesenleri" />
+          <NavigationProperty Name="UrunEkIslemMaliyetleri" Relationship="Self.FK_UrunEkFiyatlari_Urunler" FromRole="Urunler" ToRole="UrunEkIslemMaliyetleri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_BilesenSaclari_Bilesenler">
+          <End Role="Bilesenler" Type="Self.Bilesenler" Multiplicity="0..1" />
+          <End Role="BilesenSaclari" Type="Self.BilesenSaclari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="BilesenSaclari">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunBilesenleri_Bilesenler">
+          <End Role="Bilesenler" Type="Self.Bilesenler" Multiplicity="0..1" />
+          <End Role="UrunBilesenleri" Type="Self.UrunBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="UrunBilesenleri">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BilesenSaclari_Saclar">
+          <End Role="Saclar" Type="Self.Saclar" Multiplicity="0..1" />
+          <End Role="BilesenSaclari" Type="Self.BilesenSaclari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saclar">
+              <PropertyRef Name="SacID" />
+            </Principal>
+            <Dependent Role="BilesenSaclari">
+              <PropertyRef Name="SacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkBilesenleri_EkBilesenler">
+          <End Role="EkBilesenler" Type="Self.EkBilesenler" Multiplicity="0..1" />
+          <End Role="UrunEkBilesenleri" Type="Self.UrunEkBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkBilesenler">
+              <PropertyRef Name="EkBilesenID" />
+            </Principal>
+            <Dependent Role="UrunEkBilesenleri">
+              <PropertyRef Name="EkBilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkFiyatlari_EkFiyatlar">
+          <End Role="EkIslemMaliyeti" Type="Self.EkIslemMaliyeti" Multiplicity="0..1" />
+          <End Role="UrunEkIslemMaliyetleri" Type="Self.UrunEkIslemMaliyetleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkIslemMaliyeti">
+              <PropertyRef Name="EkIslemMaliyetiID" />
+            </Principal>
+            <Dependent Role="UrunEkIslemMaliyetleri">
+              <PropertyRef Name="EkIslemMaliyetiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetEkleri_EkMaliyetler1">
+          <End Role="EkMaliyetler" Type="Self.EkMaliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetEkleri" Type="Self.MaliyetEkleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EkMaliyetler">
+              <PropertyRef Name="EkMaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetEkleri">
+              <PropertyRef Name="EkMaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetDetayi_Maliyetler">
+          <End Role="Maliyetler" Type="Self.Maliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetDetayi" Type="Self.MaliyetDetayi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maliyetler">
+              <PropertyRef Name="MaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetDetayi">
+              <PropertyRef Name="MaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetDetayi_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="MaliyetDetayi" Type="Self.MaliyetDetayi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="MaliyetDetayi">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaliyetEkleri_Maliyetler">
+          <End Role="Maliyetler" Type="Self.Maliyetler" Multiplicity="0..1" />
+          <End Role="MaliyetEkleri" Type="Self.MaliyetEkleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maliyetler">
+              <PropertyRef Name="MaliyetID" />
+            </Principal>
+            <Dependent Role="MaliyetEkleri">
+              <PropertyRef Name="MaliyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunBilesenleri_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunBilesenleri" Type="Self.UrunBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunBilesenleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkBilesenleri_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunEkBilesenleri" Type="Self.UrunEkBilesenleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunEkBilesenleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunEkFiyatlari_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunEkIslemMaliyetleri" Type="Self.UrunEkIslemMaliyetleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="UrunEkIslemMaliyetleri">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparisTakipEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bilesenler" EntityType="Self.Bilesenler" />
+          <EntitySet Name="BilesenSaclari" EntityType="Self.BilesenSaclari" />
+          <EntitySet Name="EkBilesenler" EntityType="Self.EkBilesenler" />
+          <EntitySet Name="EkIslemMaliyeti" EntityType="Self.EkIslemMaliyeti" />
+          <EntitySet Name="EkMaliyetler" EntityType="Self.EkMaliyetler" />
+          <EntitySet Name="KutuProfiller" EntityType="Self.KutuProfiller" />
+          <EntitySet Name="MaliyetDetayi" EntityType="Self.MaliyetDetayi" />
+          <EntitySet Name="MaliyetEkleri" EntityType="Self.MaliyetEkleri" />
+          <EntitySet Name="Maliyetler" EntityType="Self.Maliyetler" />
+          <EntitySet Name="Saclar" EntityType="Self.Saclar" />
+          <EntitySet Name="UrunBilesenleri" EntityType="Self.UrunBilesenleri" />
+          <EntitySet Name="UrunEkBilesenleri" EntityType="Self.UrunEkBilesenleri" />
+          <EntitySet Name="UrunEkIslemMaliyetleri" EntityType="Self.UrunEkIslemMaliyetleri" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" />
+          <AssociationSet Name="FK_BilesenSaclari_Bilesenler" Association="Self.FK_BilesenSaclari_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="BilesenSaclari" EntitySet="BilesenSaclari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunBilesenleri_Bilesenler" Association="Self.FK_UrunBilesenleri_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="UrunBilesenleri" EntitySet="UrunBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BilesenSaclari_Saclar" Association="Self.FK_BilesenSaclari_Saclar">
+            <End Role="Saclar" EntitySet="Saclar" />
+            <End Role="BilesenSaclari" EntitySet="BilesenSaclari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkBilesenleri_EkBilesenler" Association="Self.FK_UrunEkBilesenleri_EkBilesenler">
+            <End Role="EkBilesenler" EntitySet="EkBilesenler" />
+            <End Role="UrunEkBilesenleri" EntitySet="UrunEkBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkFiyatlari_EkFiyatlar" Association="Self.FK_UrunEkFiyatlari_EkFiyatlar">
+            <End Role="EkIslemMaliyeti" EntitySet="EkIslemMaliyeti" />
+            <End Role="UrunEkIslemMaliyetleri" EntitySet="UrunEkIslemMaliyetleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetEkleri_EkMaliyetler1" Association="Self.FK_MaliyetEkleri_EkMaliyetler1">
+            <End Role="EkMaliyetler" EntitySet="EkMaliyetler" />
+            <End Role="MaliyetEkleri" EntitySet="MaliyetEkleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetDetayi_Maliyetler" Association="Self.FK_MaliyetDetayi_Maliyetler">
+            <End Role="Maliyetler" EntitySet="Maliyetler" />
+            <End Role="MaliyetDetayi" EntitySet="MaliyetDetayi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetDetayi_Urunler" Association="Self.FK_MaliyetDetayi_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="MaliyetDetayi" EntitySet="MaliyetDetayi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaliyetEkleri_Maliyetler" Association="Self.FK_MaliyetEkleri_Maliyetler">
+            <End Role="Maliyetler" EntitySet="Maliyetler" />
+            <End Role="MaliyetEkleri" EntitySet="MaliyetEkleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunBilesenleri_Urunler" Association="Self.FK_UrunBilesenleri_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunBilesenleri" EntitySet="UrunBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkBilesenleri_Urunler" Association="Self.FK_UrunEkBilesenleri_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunEkBilesenleri" EntitySet="UrunEkBilesenleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunEkFiyatlari_Urunler" Association="Self.FK_UrunEkFiyatlari_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunEkIslemMaliyetleri" EntitySet="UrunEkIslemMaliyetleri" />
+          </AssociationSet>
+          <EntitySet Name="Kullanicilar" EntityType="SiparisTakipModel.Kullanicilar" />
+          <EntitySet Name="KullaniciSonGirisTarihi" EntityType="SiparisTakipModel.KullaniciSonGirisTarihi" />
+          <AssociationSet Name="FK_KullaniciSonGirisTarihi_Kullanicilar" Association="SiparisTakipModel.FK_KullaniciSonGirisTarihi_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KullaniciSonGirisTarihi" EntitySet="KullaniciSonGirisTarihi" />
+          </AssociationSet>
+          <EntitySet Name="FormYetkileri" EntityType="SiparisTakipModel.FormYetkileri" />
+          <AssociationSet Name="FK_FormYetkileri_Kullanicilar" Association="SiparisTakipModel.FK_FormYetkileri_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="FormYetkileri" EntitySet="FormYetkileri" />
+          </AssociationSet>
+          <EntitySet Name="BilesenKProfilleri" EntityType="SiparisTakipModel.BilesenKProfilleri" />
+          <EntitySet Name="sysdiagrams" EntityType="SiparisTakipModel.sysdiagrams" />
+          <AssociationSet Name="FK_BilesenKProfilleri_Bilesenler" Association="SiparisTakipModel.FK_BilesenKProfilleri_Bilesenler">
+            <End Role="Bilesenler" EntitySet="Bilesenler" />
+            <End Role="BilesenKProfilleri" EntitySet="BilesenKProfilleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BilesenKProfilleri_KutuProfiller" Association="SiparisTakipModel.FK_BilesenKProfilleri_KutuProfiller">
+            <End Role="KutuProfiller" EntitySet="KutuProfiller" />
+            <End Role="BilesenKProfilleri" EntitySet="BilesenKProfilleri" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KullaniciSonGirisTarihi" Relationship="SiparisTakipModel.FK_KullaniciSonGirisTarihi_Kullanicilar" FromRole="Kullanicilar" ToRole="KullaniciSonGirisTarihi" />
+          <NavigationProperty Name="FormYetkileri" Relationship="SiparisTakipModel.FK_FormYetkileri_Kullanicilar" FromRole="Kullanicilar" ToRole="FormYetkileri" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="KullaniciSonGirisTarihi">
+          <Key>
+            <PropertyRef Name="KullaniciSonGirisTarihiID" />
+          </Key>
+          <Property Name="KullaniciSonGirisTarihiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="SonGirisTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="SiparisTakipModel.FK_KullaniciSonGirisTarihi_Kullanicilar" FromRole="KullaniciSonGirisTarihi" ToRole="Kullanicilar" />
+        </EntityType>
+        <Association Name="FK_KullaniciSonGirisTarihi_Kullanicilar">
+          <End Type="SiparisTakipModel.Kullanicilar" Role="Kullanicilar" Multiplicity="0..1" />
+          <End Type="SiparisTakipModel.KullaniciSonGirisTarihi" Role="KullaniciSonGirisTarihi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="KullaniciSonGirisTarihi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormYetkileri">
+          <Key>
+            <PropertyRef Name="FormYetkileriID" />
+          </Key>
+          <Property Name="FormYetkileriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="Ac" Type="Boolean" />
+          <Property Name="Ekle" Type="Boolean" />
+          <Property Name="Guncelle" Type="Boolean" />
+          <Property Name="Sil" Type="Boolean" />
+          <NavigationProperty Name="Kullanicilar" Relationship="SiparisTakipModel.FK_FormYetkileri_Kullanicilar" FromRole="FormYetkileri" ToRole="Kullanicilar" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_FormYetkileri_Kullanicilar">
+          <End Type="SiparisTakipModel.Kullanicilar" Role="Kullanicilar" Multiplicity="0..1" />
+          <End Type="SiparisTakipModel.FormYetkileri" Role="FormYetkileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="FormYetkileri">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BilesenKProfilleri">
+          <Key>
+            <PropertyRef Name="BilesenKProfilID" />
+          </Key>
+          <Property Name="BilesenKProfilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BilesenID" Type="Int32" />
+          <Property Name="KProfilID" Type="Int32" />
+          <Property Name="UzunlukTutari" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KProfilAgirlik" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KProfiUzunluk" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Bilesenler" Relationship="SiparisTakipModel.FK_BilesenKProfilleri_Bilesenler" FromRole="BilesenKProfilleri" ToRole="Bilesenler" />
+          <NavigationProperty Name="KutuProfiller" Relationship="SiparisTakipModel.FK_BilesenKProfilleri_KutuProfiller" FromRole="BilesenKProfilleri" ToRole="KutuProfiller" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_BilesenKProfilleri_Bilesenler">
+          <End Type="SiparisTakipModel.Bilesenler" Role="Bilesenler" Multiplicity="0..1" />
+          <End Type="SiparisTakipModel.BilesenKProfilleri" Role="BilesenKProfilleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilesenler">
+              <PropertyRef Name="BilesenID" />
+            </Principal>
+            <Dependent Role="BilesenKProfilleri">
+              <PropertyRef Name="BilesenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BilesenKProfilleri_KutuProfiller">
+          <End Type="SiparisTakipModel.KutuProfiller" Role="KutuProfiller" Multiplicity="0..1" />
+          <End Type="SiparisTakipModel.BilesenKProfilleri" Role="BilesenKProfilleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KutuProfiller">
+              <PropertyRef Name="KProfilID" />
+            </Principal>
+            <Dependent Role="BilesenKProfilleri">
+              <PropertyRef Name="KProfilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SiparisTakipModelStoreContainer" CdmEntityContainer="SiparisTakipEntities">
+          <EntitySetMapping Name="Bilesenler">
+            <EntityTypeMapping TypeName="SiparisTakipModel.Bilesenler">
+              <MappingFragment StoreEntitySet="Bilesenler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="BilesenID" ColumnName="BilesenID" />
+                <ScalarProperty Name="BilesenAdi" ColumnName="BilesenAdi" />
+                <ScalarProperty Name="BilesenAdet" ColumnName="BilesenAdet" />
+                <ScalarProperty Name="BilesenBirimi" ColumnName="BilesenBirimi" />
+                <ScalarProperty Name="BilesenAgirlik" ColumnName="BilesenAgirlik" />
+                <ScalarProperty Name="BilesenBirimFiyati" ColumnName="BilesenBirimFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BilesenSaclari">
+            <EntityTypeMapping TypeName="SiparisTakipModel.BilesenSaclari">
+              <MappingFragment StoreEntitySet="BilesenSaclari">
+                <ScalarProperty Name="SacAgirlik" ColumnName="SacAgirlik" />
+                <ScalarProperty Name="BilesenSaclariID" ColumnName="BilesenSaclariID" />
+                <ScalarProperty Name="BilesenID" ColumnName="BilesenID" />
+                <ScalarProperty Name="SacID" ColumnName="SacID" />
+                <ScalarProperty Name="AgirlikTutari" ColumnName="AgirlikTutari" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EkBilesenler">
+            <EntityTypeMapping TypeName="SiparisTakipModel.EkBilesenler">
+              <MappingFragment StoreEntitySet="EkBilesenler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="EkBilesenID" ColumnName="EkBilesenID" />
+                <ScalarProperty Name="EkBilesenAdi" ColumnName="EkBilesenAdi" />
+                <ScalarProperty Name="EkBilesenBirimi" ColumnName="EkBilesenBirimi" />
+                <ScalarProperty Name="EkBilesenAdet" ColumnName="EkBilesenAdet" />
+                <ScalarProperty Name="EkBilesenAgirlik" ColumnName="EkBilesenAgirlik" />
+                <ScalarProperty Name="EkBilesenAdetFiyati" ColumnName="EkBilesenAdetFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EkIslemMaliyeti">
+            <EntityTypeMapping TypeName="SiparisTakipModel.EkIslemMaliyeti">
+              <MappingFragment StoreEntitySet="EkIslemMaliyeti">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="EkIslemMaliyetiID" ColumnName="EkIslemMaliyetiID" />
+                <ScalarProperty Name="EkIslemMaliyetiAdi" ColumnName="EkIslemMaliyetiAdi" />
+                <ScalarProperty Name="EkIslemMaliyetiUzunluk" ColumnName="EkIslemMaliyetiUzunluk" />
+                <ScalarProperty Name="EkIslemMaliyetiFiyati" ColumnName="EkIslemMaliyetiFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EkMaliyetler">
+            <EntityTypeMapping TypeName="SiparisTakipModel.EkMaliyetler">
+              <MappingFragment StoreEntitySet="EkMaliyetler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="EkMaliyetID" ColumnName="EkMaliyetID" />
+                <ScalarProperty Name="EkMaliyetAdi" ColumnName="EkMaliyetAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KutuProfiller">
+            <EntityTypeMapping TypeName="SiparisTakipModel.KutuProfiller">
+              <MappingFragment StoreEntitySet="KutuProfiller">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="KProfilID" ColumnName="KProfilID" />
+                <ScalarProperty Name="KProfilAdi" ColumnName="KProfilAdi" />
+                <ScalarProperty Name="KProfilBirimi" ColumnName="KProfilBirimi" />
+                <ScalarProperty Name="KProfilBirimFiyati" ColumnName="KProfilBirimFiyati" />
+                <ScalarProperty Name="KProfilAgirlik" ColumnName="KProfilAgirlik" />
+                <ScalarProperty Name="KProfilUzunluk" ColumnName="KProfilUzunluk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaliyetDetayi">
+            <EntityTypeMapping TypeName="SiparisTakipModel.MaliyetDetayi">
+              <MappingFragment StoreEntitySet="MaliyetDetayi">
+                <ScalarProperty Name="MaliyetDetayiID" ColumnName="MaliyetDetayiID" />
+                <ScalarProperty Name="MaliyetID" ColumnName="MaliyetID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="MaliyetBirimi" ColumnName="MaliyetBirimi" />
+                <ScalarProperty Name="BirimAgirlik" ColumnName="BirimAgirlik" />
+                <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+                <ScalarProperty Name="UrunMiktari" ColumnName="UrunMiktari" />
+                <ScalarProperty Name="ToplamAgirlik" ColumnName="ToplamAgirlik" />
+                <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaliyetEkleri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.MaliyetEkleri">
+              <MappingFragment StoreEntitySet="MaliyetEkleri">
+                <ScalarProperty Name="MaliyetEkleriID" ColumnName="MaliyetEkleriID" />
+                <ScalarProperty Name="MaliyetID" ColumnName="MaliyetID" />
+                <ScalarProperty Name="EkMaliyetID" ColumnName="EkMaliyetID" />
+                <ScalarProperty Name="MaliyetFiyati" ColumnName="MaliyetFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maliyetler">
+            <EntityTypeMapping TypeName="SiparisTakipModel.Maliyetler">
+              <MappingFragment StoreEntitySet="Maliyetler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="MaliyetID" ColumnName="MaliyetID" />
+                <ScalarProperty Name="IlkTutar" ColumnName="IlkTutar" />
+                <ScalarProperty Name="GenelToplamAgirlik" ColumnName="GenelToplamAgirlik" />
+                <ScalarProperty Name="GenelToplamTutar" ColumnName="GenelToplamTutar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saclar">
+            <EntityTypeMapping TypeName="SiparisTakipModel.Saclar">
+              <MappingFragment StoreEntitySet="Saclar">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="SacID" ColumnName="SacID" />
+                <ScalarProperty Name="SacAdi" ColumnName="SacAdi" />
+                <ScalarProperty Name="SacBirimi" ColumnName="SacBirimi" />
+                <ScalarProperty Name="SacBirimFiyati" ColumnName="SacBirimFiyati" />
+                <ScalarProperty Name="SacAgirlik" ColumnName="SacAgirlik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunBilesenleri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.UrunBilesenleri">
+              <MappingFragment StoreEntitySet="UrunBilesenleri">
+                <ScalarProperty Name="UrunBilesenleriAdetTutari" ColumnName="UrunBilesenleriAdetTutari" />
+                <ScalarProperty Name="UrunBilesenleriAdetAgirlik" ColumnName="UrunBilesenleriAdetAgirlik" />
+                <ScalarProperty Name="UrunBilesenleriAdet" ColumnName="UrunBilesenleriAdet" />
+                <ScalarProperty Name="UrunBilesenleriID" ColumnName="UrunBilesenleriID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="BilesenID" ColumnName="BilesenID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunEkBilesenleri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.UrunEkBilesenleri">
+              <MappingFragment StoreEntitySet="UrunEkBilesenleri">
+                <ScalarProperty Name="UrunEkBilesenleriAdetTutari" ColumnName="UrunEkBilesenleriAdetTutari" />
+                <ScalarProperty Name="UrunEkBilesenleriAdetAgirlik" ColumnName="UrunEkBilesenleriAdetAgirlik" />
+                <ScalarProperty Name="UrunEkBilesenleriAdet" ColumnName="UrunEkBilesenleriAdet" />
+                <ScalarProperty Name="UrunEkBilesenleriID" ColumnName="UrunEkBilesenleriID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="EkBilesenID" ColumnName="EkBilesenID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunEkIslemMaliyetleri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.UrunEkIslemMaliyetleri">
+              <MappingFragment StoreEntitySet="UrunEkIslemMaliyetleri">
+                <ScalarProperty Name="UrunEkIslemMaliyetleriUzunluk" ColumnName="UrunEkIslemMaliyetleriUzunluk" />
+                <ScalarProperty Name="UrunEkIslemMaliyetleriID" ColumnName="UrunEkIslemMaliyetleriID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="EkIslemMaliyetiID" ColumnName="EkIslemMaliyetiID" />
+                <ScalarProperty Name="UrunEkIslemMaliyetleriFiyati" ColumnName="UrunEkIslemMaliyetleriFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="SiparisTakipModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunAdet" ColumnName="UrunAdet" />
+                <ScalarProperty Name="UrunBirimi" ColumnName="UrunBirimi" />
+                <ScalarProperty Name="UrunAgirlik" ColumnName="UrunAgirlik" />
+                <ScalarProperty Name="UrunBirimFiyati" ColumnName="UrunBirimFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="SiparisTakipModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="KullaniciAdSoyad" ColumnName="KullaniciAdSoyad" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciSonGirisTarihi">
+            <EntityTypeMapping TypeName="SiparisTakipModel.KullaniciSonGirisTarihi">
+              <MappingFragment StoreEntitySet="KullaniciSonGirisTarihi">
+                <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="KullaniciSonGirisTarihiID" ColumnName="KullaniciSonGirisTarihiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormYetkileri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.FormYetkileri">
+              <MappingFragment StoreEntitySet="FormYetkileri">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="Sil" ColumnName="Sil" />
+                <ScalarProperty Name="Guncelle" ColumnName="Guncelle" />
+                <ScalarProperty Name="Ekle" ColumnName="Ekle" />
+                <ScalarProperty Name="Ac" ColumnName="Ac" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="FormAdi" ColumnName="FormAdi" />
+                <ScalarProperty Name="FormYetkileriID" ColumnName="FormYetkileriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BilesenKProfilleri">
+            <EntityTypeMapping TypeName="SiparisTakipModel.BilesenKProfilleri">
+              <MappingFragment StoreEntitySet="BilesenKProfilleri">
+                <ScalarProperty Name="KProfiUzunluk" ColumnName="KProfiUzunluk" />
+                <ScalarProperty Name="KProfilAgirlik" ColumnName="KProfilAgirlik" />
+                <ScalarProperty Name="UzunlukTutari" ColumnName="UzunlukTutari" />
+                <ScalarProperty Name="KProfilID" ColumnName="KProfilID" />
+                <ScalarProperty Name="BilesenID" ColumnName="BilesenID" />
+                <ScalarProperty Name="BilesenKProfilID" ColumnName="BilesenKProfilID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SiparisTakipModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

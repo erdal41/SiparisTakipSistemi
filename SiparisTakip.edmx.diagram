@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1fb11d8296184b8c9db9ae0318537639" Name="Diagram1">
+        <EntityTypeShape EntityType="SiparisTakipModel.Bilesenler" Width="1.5" PointX="3.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.BilesenSaclari" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.EkBilesenler" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.EkIslemMaliyeti" Width="1.75" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.EkMaliyetler" Width="1.5" PointX="3.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.KutuProfiller" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.MaliyetDetayi" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.MaliyetEkleri" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.Maliyetler" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.Saclar" Width="1.5" PointX="3.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.UrunBilesenleri" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.UrunEkBilesenleri" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.UrunEkIslemMaliyetleri" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparisTakipModel.Urunler" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="SiparisTakipModel.FK_BilesenSaclari_Bilesenler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunBilesenleri_Bilesenler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_BilesenSaclari_Saclar" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunEkBilesenleri_EkBilesenler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunEkFiyatlari_EkFiyatlar" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_MaliyetEkleri_EkMaliyetler1" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_MaliyetDetayi_Maliyetler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_MaliyetDetayi_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_MaliyetEkleri_Maliyetler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunBilesenleri_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunEkBilesenleri_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparisTakipModel.FK_UrunEkFiyatlari_Urunler" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SiparisTakipModel.Kullanicilar" Width="1.5" PointX="8.375" PointY="1.25" />
+        <EntityTypeShape EntityType="SiparisTakipModel.KullaniciSonGirisTarihi" Width="1.5" PointX="5.375" PointY="1.375" />
+        <AssociationConnector Association="SiparisTakipModel.FK_KullaniciSonGirisTarihi_Kullanicilar" />
+        <EntityTypeShape EntityType="SiparisTakipModel.FormYetkileri" Width="1.5" PointX="10.75" PointY="1.125" />
+        <AssociationConnector Association="SiparisTakipModel.FK_FormYetkileri_Kullanicilar" />
+        <EntityTypeShape EntityType="SiparisTakipModel.BilesenKProfilleri" Width="1.5" PointX="9" PointY="19.875" />
+        <EntityTypeShape EntityType="SiparisTakipModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="5.75" />
+        <AssociationConnector Association="SiparisTakipModel.FK_BilesenKProfilleri_Bilesenler" />
+        <AssociationConnector Association="SiparisTakipModel.FK_BilesenKProfilleri_KutuProfiller" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
